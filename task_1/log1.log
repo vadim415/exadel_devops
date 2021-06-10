@@ -1,0 +1,48 @@
+commit 65f867c9e705f606d2b28b1522bf7a71fc15f06d
+Author: Vadim Vakong <alex.brofman123@gmail.com>
+Date:   Wed Jun 9 13:31:27 2021 +0300
+
+    first_task
+
+commit 3133d8aa4aa56040c40616ad34d05316b45958e8
+Author: Vadim Vakong <alex.brofman123@gmail.com>
+Date:   Wed Jun 9 13:25:03 2021 +0300
+
+    add .gitignore
+
+commit 273292721a937673bdbf81c217003305529cd15b
+Author: Vadim Vakong <alex.brofman123@gmail.com>
+Date:   Wed Jun 9 13:21:12 2021 +0300
+
+    update_all
+
+commit 90e98537abeb139babd1c5e4b0934c36548bb533
+Merge: b4ce98f 3141a98
+Author: Vadim Vakong <alex.brofman123@gmail.com>
+Date:   Wed Jun 9 13:20:54 2021 +0300
+
+    Merge branch 'master' of https://github.com/vadim415/exadel_devops
+
+commit 3141a98065f1311ace430fd65481ef8a05a9a4fc
+Author: vadim415 <45165757+vadim415@users.noreply.github.com>
+Date:   Wed Jun 9 13:20:48 2021 +0300
+
+    Create README.md
+
+commit b4ce98ff3abcb41fe8cd8f3e587c937f61758a59
+Author: Vadim Vakong <alex.brofman123@gmail.com>
+Date:   Wed Jun 9 13:20:18 2021 +0300
+
+    task_1
+
+commit 28be62739091c6843552baf23fcca77b24f21bc6
+Author: Vadim Vakong <alex.brofman123@gmail.com>
+Date:   Wed Jun 9 13:17:56 2021 +0300
+
+    err
+
+commit c46ce395e735e4c100afd8aff906a98a490a7411
+Author: Vadim Vakong <alex.brofman123@gmail.com>
+Date:   Wed Jun 9 13:10:31 2021 +0300
+
+    test_commit
