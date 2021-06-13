@@ -1,0 +1,12 @@
+---
+
+- hosts: aws
+  remote_user: myuser
+  become: true
+  tasks:
+  - name: Performing Tasks for CentOS
+    include_tasks: centos.yml
+    when: ansible_facts['distribution'] == 'CentOS'
+  - name: Performing Tasks for Ubuntu
+    include_tasks: ubuntu.yml
+    when: ansible_facts['distribution'] == 'Ubuntu'
