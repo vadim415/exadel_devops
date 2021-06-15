@@ -9,6 +9,7 @@
     - wget
     - curl
     - net-tools
+    - yum-utils
   tags:
     - docker
 
@@ -28,10 +29,6 @@
     state: started
     name: httpd
   become: true
-- name: add docker repository
-  dnf:
-    name: 'https://download.docker.com/linux/centos/docker-ce.repo'
-    state: present
 - name: Add Docker repo
   get_url:
     url: https://download.docker.com/linux/centos/docker-ce.repo
