@@ -1,0 +1,43 @@
+---
+- name: Install docker packages
+  apt:
+    name: "{{ item }}"
+    state: present
+    update_cache: yes
+  with_items:
+    - git
+    - wget
+    - curl
+    - net-tools
+  tags:
+    - docker
+
+- name: installing httpd
+  yum: pkg=httpd state=present
+  become: true
+- name: copy script
+  become: true
+  copy:
+    src: scripts/script_centos.sh
+    dest: /srv/script_centos.sh
+- name: execute script 
+  become: true
+  shell: bash /srv/script_centos.sh
+- name: Make sure a service is running
+  systemd:
+    state: started
+    name: httpd
+  become: true
+- name: add docker repository
+  dnf:
+    name: 'https://download.docker.com/linux/centos/docker-ce.repo'
+    state: present
+- name: install docker
+  dnf:
+    name: docker-ce 
+    state: present
+- name: Install docker-compose
+  get_url: 
+    url : "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-Linux-x86_64 -o /usr/bin/docker-compose"
+    dest: /usr/bin/docker-compose
+    mode: 'u+x,g+x'
