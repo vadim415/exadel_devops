@@ -1,0 +1,2 @@
+nginx_v1: digest: sha256:abf91819885cd4af251f7c168e4e85dc48863095bb34783684c7517b53b68232 size: 1570
+docker pull vakong315/exadel_devops_course:nginx_v1
