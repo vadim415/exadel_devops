@@ -1,5 +1,6 @@
 FROM  centos:latest
-LABEL DEVOPS="vakong415" maintainer=vakong415@i.ua version=2.0 environment=prod
+ENV DEVOPS=vakong415
+LABEL DEVOPS="vakong415" maintainer=vakong415@i.ua version=2.0 environment=extra_task.3
 RUN yum update -y &&  yum upgrade -y \
 yum install -y epel-release && yum update -y &&  yum install nginx -y
 COPY nginx.conf /etc/nginx/nginx.conf
