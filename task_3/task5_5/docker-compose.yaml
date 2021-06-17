@@ -1,0 +1,44 @@
+version: '3.2'
+
+services:
+  db:
+    image: mysql:5.7
+    volumes:
+      - db_data:/var/lib/mysql
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+    #networks:
+    #  - gate
+    ports:
+      - "3306:3306" 
+  java:
+    build:
+      context: ./java/docker-tomcat-tutorial/
+    ports:
+      - "8000:8000"    
+    restart: always
+    #networks:
+    #  - gate
+    depends_on:
+      - db
+  web:
+    build:
+      context: ./first_image
+    ports:
+      - "80:80"    
+    restart: always
+    #networks:
+    #  - gate
+    depends_on:
+      - java   
+
+volumes:
+  db_data:
+
+networks:
+  gate:
+    driver: bridge
