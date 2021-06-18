@@ -1,0 +1,71 @@
+---
+- name: Install docker packages
+  apt:
+    name: "{{ item }}"
+    state: absent
+    autoclean: yes
+    autoremove: yes
+    purge: yes
+  with_items:
+    - docker
+    - docker-engine
+    - docker.io    
+  tags:
+    - docker
+
+- name: Only run "update_cache=yes" if the last one is more than 3600 seconds ago
+  apt:
+    update_cache: yes
+    cache_valid_time: 3600
+
+- name: Install needs package
+  apt: name={{ item }} state=present
+  with_items:
+   - curl
+   - vim
+   - net-tools
+   - wget
+   - git
+   - apt-transport-https
+   - ca-certificates
+   - software-properties-common
+
+- name: Add Docker GPG apt Key
+  apt_key:
+   url: https://download.docker.com/linux/ubuntu/gpg
+   state: present
+
+- name: Add Docker Repository
+  apt_repository:
+   repo: "deb https://download.docker.com/linux/ubuntu focal stable"
+   state: present  
+
+- name: Update apt and install docker-ce
+  apt: 
+    update_cache: yes
+    name: docker-ce 
+    state: latest
+  apt:
+    name: "{{item}}"
+    state: latest
+    update_cache: yes
+  loop:
+    - docker-ce
+    - docker-ce-cli
+    - containerd.io 
+- name: Add user to docker group
+  user:
+    name: "{{ansible_user}}"
+    group: docker
+
+- name: Download docker-compose {{ docker_compose_version }}
+  get_url:
+    url : "https://github.com/docker/compose/releases/download/{{ docker_compose_version }}/docker-compose-Linux-x86_64"
+    dest: /usr/bin/docker-compose
+    mode: 'u+x,g+x'
+
+- name: systemctl start docker
+  service:
+    name: docker
+    state: started
+    enabled: yes   

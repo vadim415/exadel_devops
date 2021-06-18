@@ -1,7 +1,7 @@
 version: '3.2'
 
 services:
-  db:
+  db1:
     image: mysql:5.7
     volumes:
       - db_data:/var/lib/mysql
@@ -14,18 +14,26 @@ services:
     #networks:
     #  - gate
     ports:
-      - "3306:3306" 
-  java:
+      - "3306:3306"
+    deploy:
+      mode: replicated
+      replicas: 5  
+  java1:
+    container_name: java1
     build:
       context: ./java/docker-tomcat-tutorial/
     ports:
-      - "8000:8000"    
+      - "8080:8080"    
     restart: always
     #networks:
     #  - gate
     depends_on:
-      - db
-  web:
+      - db1
+    deploy:
+      mode: replicated
+      replicas: 5   
+  web1:
+    container_name: web1
     build:
       context: ./first_image
     ports:
@@ -34,7 +42,10 @@ services:
     #networks:
     #  - gate
     depends_on:
-      - java   
+      - java1
+    deploy:
+      mode: replicated
+      replicas: 5     
 
 volumes:
   db_data:

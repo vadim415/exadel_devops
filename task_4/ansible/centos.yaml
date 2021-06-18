@@ -1,0 +1,35 @@
+---
+
+- name: Install ansible
+  become: true
+  shell: "sudo amazon-linux-extras install ansible2 -y"
+  #register: install_ansible
+#- name: Print package ansible
+ # debug:
+ #   var: install_ansible 
+- name: copy src to ansible
+  become: yes
+  copy:
+    src: ansible_home/
+    dest: /home/   
+- name: change permissions
+  file:
+    path: /home/us-east2key.pem
+    mode: "0400"  
+- name: 
+  become: yes
+  shell: "cd /home/ && ANSIBLE_HOST_KEY_CHECKING=False ansible aws -i host.ini -m 'ping'"
+  register: ping_instance
+- name: output ping
+  debug:
+    var: ping_instance.stdout
+#- name: Add user to docker group
+#  user:
+#    name: "{{ansible_user}}"
+#    group: docker#
+#
+#- name: Download docker-compose {{ docker_compose_version }}
+#  get_url:
+#    url : "https://github.com/docker/compose/releases/download/{{ docker_compose_version }}/docker-compose-Linux-x86_64"
+#    dest: /usr/bin/docker-compose
+#    mode: 'u+x,g+x'
