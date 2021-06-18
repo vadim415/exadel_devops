@@ -1,8 +1,21 @@
-*.iml
 *.pem
+*.cfg
+**/.terraform/*
 
-.DS_Store/
+# .tfstate files
+*.tfstate
+*.tfstate.*
 
-.idea/
+.terraform/
+task_4/.terraform/providers/registry.terraform.io/hashicorp/aws/3.45.0/linux_amd64/*
+.terraform/*
+task_4/.terraform/*
+./terraform/
+.terraform.lock.hcl
+.terraform.tfstate*
+.terraform.lock.hcl
+terraform.tfstate.bac
+terraform.tfstate
 
-out/
+.terraform/*
+.terraform/

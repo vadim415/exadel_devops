@@ -1,2 +1,12 @@
 *.pem
 *.cfg
+.terraform/*
+./terraform/
+.terraform.lock.hcl
+.terraform.tfstate*
+.terraform.lock.hcl
+terraform.tfstate.bac
+terraform.tfstate
+
+.terraform/*
+.terraform/
