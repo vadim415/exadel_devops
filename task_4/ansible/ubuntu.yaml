@@ -69,3 +69,12 @@
     name: docker
     state: started
     enabled: yes   
+- name: Clone repository and after that run tasks
+  become: true
+  copy:
+      src:  ./docker/
+      dest: /srv
+      force: yes
+- name:  run docker-compose yaml
+  become: true
+  shell: "cd /srv/docker-compose-lemp-stack/  && docker-compose up -d"
