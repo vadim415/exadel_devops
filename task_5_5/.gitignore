@@ -1,0 +1,18 @@
+*.pem
+*.cfg
+**/.terraform/*
+
+# .tfstate files
+*.tfstate
+*.tfstate.*
+.terraform/*
+./terraform/
+.terraform.lock.hcl
+.terraform.tfstate*
+.terraform.lock.hcl
+terraform.tfstate.bac
+terraform.tfstate
+.terraform/*
+terraform*
+.terraform/
+^.for_history

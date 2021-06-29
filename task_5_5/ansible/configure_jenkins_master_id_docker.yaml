@@ -1,0 +1,19 @@
+- hosts: all
+  become: yes
+  tasks:
+  #- name: Ansible copy file to remote server
+  #  become: true
+  #  copy:
+  #    src: ./Docker_service
+  #    dest: /srv
+  #    force: yes
+  #    mode: '0766'
+  #- name: run jenkins in docker
+  #  become: yes
+  #  shell:  "cd /srv/Docker_service/ && sudo docker-compose up -d" 
+  - debug: var=ansible_default_ipv4.address
+  - name: show security token
+    become: true
+    shell:  "cd /srv/Docker_service/ && docker-compose exec jenkins bash -c 'cat /var/jenkins_home/secrets/initialAdminPassword'"
+    register: command_output
+  - debug: var=command_output.stdout_lines
